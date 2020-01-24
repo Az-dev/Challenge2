@@ -43,17 +43,21 @@
 /*
  * General Timer registers
  */
-#define TIMSK		
-#define TIFR		
+#define TIMSK	*((reg_type8_t) 0x59)	
+#define TIFR	*((reg_type8_t) 0x58)
 
+/*
+* Status Register
+*/
+#define SREG   *((reg_type8_t) 0x5F)
 
 /*
  * Timer 0 Registers
  */
 
-#define TCCR0		
-#define TCNT0		
-#define OCR0		
+#define TCCR0	*((reg_type8_t) 0x53)	
+#define TCNT0	*((reg_type8_t) 0x52)	
+#define OCR0	*((reg_type8_t) 0x5C)	
 
 
 /*
