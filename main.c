@@ -11,17 +11,43 @@
 #include "pushButton.h"
 #include "std_types.h"
 #include "sevenSeg.h"
+#include "timers.h"
 
 void gpioReq7(void);
 void gpioReq8(void);
 void gpioReq9(void);
+void test(void);
+
 
 int main(void)
 { 
 	/* gpioReq7();*/ 
 	/* gpioReq8(); */
-	/* gpioReq9(); */	
+	/* gpioReq9(); */
+	test();
+	
 }
+
+void test(void)
+{
+	/*initialize led*/
+	Led_Init(LED_1);
+   /* intialize timer 0*/
+   //timer0Init(T0_NORMAL_MODE,T0_OC0_CLEAR,T0_PRESCALER_NO,0,0,T0_POLLING);	/* Normal Mode & Polling*/
+   //timer0Init(T0_NORMAL_MODE,T0_OC0_CLEAR,T0_PRESCALER_NO,0,0,T0_INTERRUPT_NORMAL);	/* Normal Mode & Interrupt-normal*/
+   //timer0Init(T0_COMP_MODE,T0_OC0_CLEAR,T0_PRESCALER_NO,0,0,T0_POLLING);	/* Compare Mode & Polling*/
+   timer0Init(T0_COMP_MODE,T0_OC0_CLEAR,T0_PRESCALER_NO,0,0,T0_INTERRUPT_CMP);	/* Compare Mode & Interrupt-compare*/
+   
+	while(1)
+	{
+		/*Go state*/
+		Led_On(LED_1);
+		timer0DelayMs(10); //delay 1000 ms
+		Led_Off(LED_1);	
+		timer0DelayMs(10); //delay 1000 ms	
+	}
+}
+
 
 void gpioReq7(void)
 {
